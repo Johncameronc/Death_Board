@@ -84,7 +84,8 @@ public class Tabuleiro{
   }
 
   void imprimirTabuleiro(){
-    int i;
+    //char[] alfabeto = new char[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'}; 
+    int i, j;
 
     System.out.print("|      ");
     for(i = 0; i < this.colunas; i++){
@@ -95,42 +96,32 @@ public class Tabuleiro{
     }
     System.out.println(" |");
 
-    for(i = 0; i < this.linhas; i++){
-
-      System.out.print("| ");
-      System.out.print("[" + BLUE_BOLD);
-      System.out.printf("%2d", i + 1);
-      System.out.print(RESET + " ]");
+    char letra = 'A';
+    for(i = 0; i < this.linhas; i++, letra++){
+      //System.out.print("| ");
+      //System.out.print("[" + BLUE_BOLD);
+      //System.out.printf("%2d", i + 1);
+      //System.out.print(RESET + " ]");
+      System.out.print("| [ " + BLUE_BOLD + letra + WHITE + " ]");
       //System.out.print("[ " + BLUE + (i + 1) + WHITE + " ]");
 
-      for(int j = 0; j < this.colunas; j++){
+      for(j = 0; j < this.colunas; j++){
         System.out.print("[ ");
         if(matriz[i][j] == 'O'){
-          System.out.print(YELLOW + matriz[i][j] + RESET);
+          System.out.print(GREEN + matriz[i][j] + RESET);
         } else if(matriz[i][j] == 'X'){
           System.out.print(RED + matriz[i][j] + RESET);
         } else {
-          System.out.print(matriz[i][j]);
+          System.out.print(BLACK_BOLD + matriz[i][j]);
         }
          
-        System.out.print(WHITE + " ]");
+        System.out.print(RESET + " ]");
       }
 
     System.out.println(" |");
     }
   }
   
-
-  void imprimirPersonagens(){
-    for(int i = 0; i < personagens.size(); i++){
-      Personagem p = personagens.get(i);
-      if(personagens.get(i).getIcone() == 'O')
-        System.out.println("| (" +  (i + 1) + ") - [ " + YELLOW + p.getIcone() + WHITE + " ] - Aliado   - Posicao [" + BLUE + (p.getX() + 1) + WHITE + "][" + PURPLE + (p.getY() + 1) + WHITE + "]");
-        else
-        System.out.println("| (" + (i + 1) + ") - [ " + RED + p.getIcone() + WHITE + " ] - Inimigo  - Posicao [" + BLUE + (p.getX() + 1) + WHITE + "][" + PURPLE + (p.getY() + 1) + WHITE + "]");
-    }
-  }
-
   void moverPersonagem(int mov, int personagem, Scanner input){
     Personagem p = personagens.get(personagem);
     int i;
@@ -252,14 +243,35 @@ public class Tabuleiro{
     }
   }
 
-  public void moverInimigos(int personagem){
+  public void moverInimigos(int personagem, int dificuldade){
+    int chance = 0;
+
+    switch(dificuldade){
+      case 1: chance = 10;
+      break;
+
+      case 2: chance = 8;
+      break;
+
+      case 3: chance = 6;
+      break;
+
+      case 4: chance = 4;
+      break;
+
+      case 5: chance = 2;
+      break;
+
+      case 6: chance = 1;
+      break;
+    }
     
     Personagem aliado = personagens.get(0);
     Personagem inimigo = personagens.get(personagem);
 
     Random rn = new Random();
 
-    int mover = rn.nextInt(4); // 0, 1, 2, 3 --> sendo mover > 0 --> 75% de chance de se mover
+    int mover = rn.nextInt(chance); // 0, 1, 2, 3 --> sendo mover > 0 --> 75% de chance de se mover
     int pos; // 0 para X e 1 para Y
     int dX = aliado.getX() - inimigo.getX(), dY = aliado.getY() - inimigo.getY();
 
@@ -276,7 +288,7 @@ public class Tabuleiro{
 
     // Y = ROXO | X = AZUL
 
-    if(mover > 0){
+    if(mover == 0){
       if(pos == 0){
         if(inimigo.getX() > aliado.getX()){
           if(getMatriz(inimigo.getX() - 1, inimigo.getY()) == 'X'){

@@ -274,7 +274,7 @@ public class Main {
             }
             atualizarTela(tabulerio);
             for(i = 1; i < tabulerio.getPersSize(); i++){
-              tabulerio.moverInimigos(i);
+              tabulerio.moverInimigos(i, dificuldade);
             }
           }
         break;
@@ -288,7 +288,7 @@ public class Main {
             }
             atualizarTela(tabulerio);
             for(i = 1; i < tabulerio.getPersSize(); i++){
-              tabulerio.moverInimigos(i);
+              tabulerio.moverInimigos(i, dificuldade);
             }
           }
         break;
@@ -302,7 +302,7 @@ public class Main {
             }
             atualizarTela(tabulerio);
             for(i = 1; i < tabulerio.getPersSize(); i++){
-              tabulerio.moverInimigos(i);
+              tabulerio.moverInimigos(i, dificuldade);
             }
           }
         break;
@@ -316,7 +316,7 @@ public class Main {
             }
             atualizarTela(tabulerio);
             for(i = 1; i < tabulerio.getPersSize(); i++){
-              tabulerio.moverInimigos(i);
+              tabulerio.moverInimigos(i, dificuldade);
             }
           }
         break;
@@ -329,6 +329,7 @@ public class Main {
         break;
 
         default:
+          rodada--;
           System.out.println("|----------------------------------------|");
           System.out.println("| > Opcao inválida! Digite novamente...");
           System.out.println("|----------------------------------------|");
