@@ -29,12 +29,14 @@ public class Tabuleiro{
   
   private int linhas;
   private int colunas;
+  private int pontuacao;
   private char matriz[][];
   private List<Personagem> personagens = new ArrayList<>();
 
   Tabuleiro(int linhas, int colunas){
     this.linhas = linhas;
     this.colunas = colunas;
+    this.pontuacao = 0;
   }
 
   int getLinha(){
@@ -43,6 +45,14 @@ public class Tabuleiro{
 
   int getColuna(){
     return this.colunas;
+  }
+
+  int getPontuacao(){
+    return this.pontuacao;
+  }
+
+  void setPontuacao(int pontuacao){
+    this.pontuacao = pontuacao;
   }
 
   char getMatriz(int x, int y){
@@ -144,6 +154,7 @@ public class Tabuleiro{
         if(icone == 'O' && getMatriz(p.getX() - 1, p.getY()) == 'X'){
           for(i = 0; i < personagens.size(); i++){
             if(personagens.get(i).getX() == p.getX() - 1 && personagens.get(i).getY() == p.getY()){
+              this.setPontuacao(this.getPontuacao() + 1);
               personagens.remove(i);
               break;
             }
@@ -171,6 +182,7 @@ public class Tabuleiro{
         if(icone == 'O' && getMatriz(p.getX() + 1, p.getY()) == 'X'){
           for(i = 0; i < personagens.size(); i++){
             if(personagens.get(i).getX() == p.getX() + 1 && personagens.get(i).getY() == p.getY()){
+              this.setPontuacao(this.getPontuacao() + 1);
               personagens.remove(i);
               break;
             }
@@ -198,6 +210,7 @@ public class Tabuleiro{
         if(icone == 'O' && getMatriz(p.getX(), p.getY() - 1) == 'X'){
           for(i = 0; i < personagens.size(); i++){
             if(personagens.get(i).getY() == p.getY() - 1 && personagens.get(i).getX() == p.getX()){
+              this.setPontuacao(this.getPontuacao() + 1);
               personagens.remove(i);
               break;
             }
@@ -225,6 +238,7 @@ public class Tabuleiro{
         if(icone == 'O' && getMatriz(p.getX(), p.getY() + 1) == 'X'){
           for(i = 0; i < personagens.size(); i++){
             if(personagens.get(i).getY() == p.getY() + 1 && personagens.get(i).getX() == p.getX()){
+              this.setPontuacao(this.getPontuacao() + 1);
               personagens.remove(i);
               break;
             }
