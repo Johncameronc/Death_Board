@@ -25,6 +25,8 @@ public class Main {
   public static final String CYAN_BOLD = "\033[1;36m";   // CYAN
   public static final String WHITE_BOLD = "\033[1;37m";  // WHITE
 
+  public static final String CLEAR = "\033c";
+
   static void imprimirSeparador(Tabuleiro tabuleiro){
     System.out.print("|");
     for(int i = 0; i <= tabuleiro.getColuna(); i++){
