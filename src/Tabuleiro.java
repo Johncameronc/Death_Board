@@ -288,7 +288,6 @@ public class Tabuleiro{
     int mover = rn.nextInt(chance); // 0, 1, 2, 3 --> sendo mover > 0 --> 75% de chance de se mover
     int pos; // 0 para X e 1 para Y
     int dX = aliado.getX() - inimigo.getX(), dY = aliado.getY() - inimigo.getY();
-
     if(dX < 0)
       dX = dX * -1;
 
@@ -299,6 +298,9 @@ public class Tabuleiro{
       pos = 0;
     else 
       pos = 1;
+
+    if(dX == dY)
+      pos = rn.nextInt(2);
 
     // Y = ROXO | X = AZUL
 
