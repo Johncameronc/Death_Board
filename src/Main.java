@@ -70,7 +70,7 @@ public class Main {
 
   // Atualmente a % de movimentos dos inimigos é de 75%, pode melhorar colocando movimentos a cada 2 rodadas
   // Para melhorar o jogo, colocar vidas no personagem??
-  public static void main(String[] args) {
+  public static void main(String[] args) throws IOException {
     
     Scanner input = new Scanner(System.in);
     Random rn = new Random();
@@ -219,7 +219,6 @@ public class Main {
     while(menu){
 
       jogo = tabulerio.statusJogo();
-
       if(jogo == 2){
         System.out.println("\033c");
         System.out.println("|----------------------------------------|");
